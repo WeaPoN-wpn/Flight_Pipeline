@@ -36,7 +36,16 @@
 1️⃣ **创建虚拟环境并安装依赖**
 ```
 python -m venv venv
-venv\Scripts\activate   # Windows
+```
+* Windows
+```
+venv\Scripts\activate
+```
+* Linux/MacOS
+```
+source venv/bin/activate
+```
+```
 pip install -r requirements.txt
 ```
 
