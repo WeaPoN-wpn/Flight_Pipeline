@@ -34,44 +34,45 @@
 ## 🚀 本地运行指南（CMD命令行）
 
 1️⃣ **创建虚拟环境并安装依赖**
-\```bash
+```
 python -m venv venv
 venv\Scripts\activate   # Windows
 pip install -r requirements.txt
-\```
+```
 
 2️⃣ **执行 ETL 流程，拉取Azure数据并处理**
-\```bash
+```
 python -m src.azure_etl --account_name YOUR_ACCOUNT \
                         --account_key YOUR_KEY \
                         --container YOUR_CONTAINER \
                         --blob YOUR_FILE.parquet
-\```
+```
 💾 处理后的数据会保存到：`./data/processed_data.parquet`
 
 3️⃣ **训练模型**
-\```bash
+```
 python -m src.modeling --data_path ./data/processed_data.parquet
-\```
+```
 ✅ 模型和Scaler将保存至 `models/` 目录，并自动注册
 
 4️⃣ **启动预测Web应用（Streamlit）**
-\```bash
+```
 streamlit run app.py
-\```
+```
 🌐 浏览器打开后，可手动输入特征并实时预测航班延误
 
 ---
 
 ## 🌱 项目未来可扩展方向
+✅ **完善清洗和特征工程步骤**：
+- 集合探索性分析完善特征工程，进一步提升模型预测性能
+
 ✅ **多模型支持**：
 - 支持 XGBoost、LightGBM、深度神经网络等模型
 
-✅ **模型调参自动化**：
-- 集成 Grid Search / Random Search 或 Hyperopt 自动调参模块
-
-✅ **在线部署 API**：
-- 加入 FastAPI 或 Flask 版本，支持 RESTful 接口对外预测
+✅ **优化网页**：
+- 分两页展示，第一页展示探索性分析报告，第二页展示预测模型
+- 加入滑块、chatbot等模块
 
 ✅ **MLFlow 版本管理**：
 - 替换本地 registry.json，接入完整模型生命周期管理
@@ -83,12 +84,3 @@ streamlit run app.py
 - 加入 Airflow，实现 ETL ➔ Training ➔ Serving 全流程自动化
 
 ---
-
-## 💻 示例效果
-- Azure 数据成功下载与处理
-- 模型训练准确率（R²）达到 0.95+
-- Streamlit 页面可交互预测航班延误分钟数
-
----
-
-如需完整部署脚本、日志功能或API版本，欢迎联系我！
